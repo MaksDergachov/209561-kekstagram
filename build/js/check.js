@@ -1,36 +1,37 @@
-function getMessage(a, b) { //создаю функцию getMessage принимающую два параметра
-  var sMessage;
+'use strict';
+  function getMessage(a, b) { //создаю функцию getMessage принимающую два параметра
+    var sMessage;
 
-  if (typeof a === 'boolean') {
-    if(a) {
-      sMessage = 'Переданное GIF-изображение анимировано и содержит ' + b + ' кадров';
-    } else {
-      sMessage = 'Переданное GIF-изображение не анимировано';
+    if (typeof a === 'boolean') {
+      if (a) {
+        sMessage = 'Переданное GIF-изображение анимировано и содержит ' + b + ' кадров';
+      } else {
+        sMessage = 'Переданное GIF-изображение не анимировано';
+      }
     }
-  }
 
-	if (typeof a === 'number') {
-			sMessage =  "Переданное SVG-изображение содержит " + a + " 			объектов и " + (b * 4) + " атрибутов";
-		}
-	if ( Array.isArray(a) && !Array.isArray(b) ) {
-		var amountOfRedPoints = 0;
+    if (typeof a === 'number') {
+      sMessage = 'Переданное SVG-изображение содержит  + a + " объектов и " + (b * 4) + " атрибутов';
+    }
 
-		for (var i = 0; i < a.length; i++) {
-			amountOfRedPoints += a[i];
-		}
+    if ( Array.isArray(a) && !Array.isArray(b) ) {
+      var amountOfRedPoints = 0;
 
-		sMessage =  "Количество красных точек во всех строчках изображения: " + amountOfRedPoints;
-	}
-	if ( Array.isArray(a) && Array.isArray(b) ) {
-		var artifactsSquare = 0;
+      for (var i = 0; i < a.length; i++) {
+        amountOfRedPoints += a[i];
+      }
 
-		for (var i = 0; i < a.length; i++) {
-			var result = a[i] * b[i];
-			artifactsSquare += result;
-		};
+      sMessage = 'Количество красных точек во всех строчках изображения: ' + amountOfRedPoints;
+    } // оттащил закрывающую вперёд
+    if ( Array.isArray(a) && Array.isArray(b) ) {
+      var artifactsSquare = 0;
 
-		sMessage =  "Общая площадь артефактов сжатия: " + artifactsSquare + " пикселей";
+      for (i = 0; i < a.length; i++) {
+        artifactsSquare += a[i] * b[i];
+      }//опять оттащил закрывающую
 
-  }
-  return sMessage;
-}
+      sMessage = 'Общая площадь артефактов сжатия: " + artifactsSquare + " пикселей';
+    }//поднял на 1 строчку вперёд для лучшей читабельности
+
+    return sMessage;
+  } // подвинул вперёд
