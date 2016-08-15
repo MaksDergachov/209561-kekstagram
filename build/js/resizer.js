@@ -119,8 +119,8 @@
           this._resizeConstraint.side - this._ctx.lineWidth / 2,
           this._resizeConstraint.side - this._ctx.lineWidth / 2);
 
-          // Добавление оверлея(чёрного цвета с прозрачностью 80%) и размера изображения.
-               // Для лучшей читаемости кода объявим переменные с короткими именами.
+      // Добавление оверлея(чёрного цвета с прозрачностью 80%) и размера изображения.
+      // Для лучшей читаемости кода объявим переменные с короткими именами.
       this._ctx.fillStyle = 'rgba(0, 0, 0, 0.8)';//рисую чёрный слой с прозрачностью 80%
       this._ctx.beginPath();
       this._ctx.moveTo(-this._image.naturalWidth / 2, this._image.naturalHeight / 2);//задал путь, учитывая что стартоаая точка находится в центре, нарисовал квадрат
@@ -133,13 +133,13 @@
       this._ctx.lineTo((-this._resizeConstraint.side / 2) - this._ctx.lineWidth, (this._resizeConstraint.side / 2) - this._ctx.lineWidth / 2);
       this._ctx.fill('evenodd');
 
-            //Вывод размера кадрируемого изображения
+      //Вывод размера кадрируемого изображения
       this._ctx.font = '22px serif';//шрифт, размер
       this._ctx.fillStyle = 'white';//цвет текста
       this._ctx.textAlign = 'center';//выровнял по центру
       this._ctx.fillStyle = 'rgba(255, 255, 255)';//цвет
       this._ctx.fillText(this._image.naturalWidth + 'x' + this._image.naturalHeight, 0, (-this._resizeConstraint.side / 2) - this._ctx.lineWidth - 15);
-// задал текст и его расположение (выше верхней рамки кадра плюс пунктирная линию плюс (на глаз) 15 )
+      // задал текст и его расположение (выше верхней рамки кадра плюс пунктирная линию плюс (на глаз) 15 )
       // Восстановление состояния канваса, которое было до вызова ctx.save
       // и последующего изменения системы координат. Нужно для того, чтобы
       // следующий кадр рисовался с привычной системой координат, где точка
