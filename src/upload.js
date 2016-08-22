@@ -71,6 +71,31 @@
    * Проверяет, валидны ли данные, в форме кадрирования.
    * @return {boolean}
    */
+  var resizerX = document.querySelector('#resize-x');
+  var resizerY = document.querySelector('#resize-y');
+  var resizerSize = document.querySelector('#resize-size');
+  var resizerFwd = document.querySelector('#resize-fwd');
+  var resizerFields = document.querySelectorAll('.upload-resize-controls > input');
+
+  var setResizerConstraint = function() {
+    if ((+resizerX.value + +resizerSize.value) > currentResizer._image.naturalWidth || (+resizerY.value + +resizerSize.value) > currentResizer._image.naturalHeight || resizerX < 0 || resizerY < 0) {
+      resizerFwd.setAttribute('disabled', '');
+    } else {
+      resizerFwd.removeAttribute('disabled');
+    }
+  };
+
+  resizerX.min = 0;
+  resizerX.value = 0;
+  resizerY.min = 0;
+  resizerY.value = 0;
+  resizerSize.min = 50;
+  resizerSize.value = 50;
+
+  for (var m = resizerFields.length - 1; m >= 0; m--) {
+    resizerFields[m].addEventListener('input', setResizerConstraint);
+  }
+
   function resizeFormIsValid() {
     return true;
   }
