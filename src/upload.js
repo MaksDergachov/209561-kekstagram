@@ -9,6 +9,8 @@
 
 (function() {
   /** @enum {string} */
+  var browserCookies = require('browser-cookies');
+
   var FileType = {
     'GIF': '',
     'JPEG': '',
@@ -183,7 +185,6 @@
 
           uploadForm.classList.add('invisible');
           resizeForm.classList.remove('invisible');
-
           hideMessage();
         };
 
@@ -230,9 +231,15 @@
 
       resizeForm.classList.add('invisible');
       filterForm.classList.remove('invisible');
+
+      setFilterFromCookie();
     }
   };
-
+  function setFilterFromCookie() {
+    var filterName = browserCookies.get('upload-filter') || 'none';
+    document.querySelector('#upload-filter-' + filterName).checked = true;
+    filterImage.classList.add('filter-' + filterName);
+  }
   /**
    * Сброс формы фильтра. Показывает форму кадрирования.
    * @param {Event} evt
@@ -242,6 +249,8 @@
 
     filterForm.classList.add('invisible');
     resizeForm.classList.remove('invisible');
+
+
   };
 
   /**
@@ -257,8 +266,26 @@
 
     filterForm.classList.add('invisible');
     uploadForm.classList.remove('invisible');
+
+    saveFilterToCookie();
   };
 
+  function saveFilterToCookie() {
+    var element = document.querySelector('#upload-filter input[type=radio]:checked');
+    browserCookies.set('upload-filter', element.value, {expires: getDaysToExpireCookie() });
+  }
+  function getDaysToExpireCookie() {
+    var birthday = new Date(1906, 11, 9); // 9 декабря 1906 г.
+    var curDate = new Date();
+    var thisYearBirthday = new Date(curDate.getFullYear(), birthday.getMonth(), birthday.getDate());
+    if (curDate > thisYearBirthday) {
+      return Math.ceil( (curDate - thisYearBirthday) / (1000 * 60 * 60 * 24) ); // день рождения в текущем году уже прошёл
+    } else {
+        // создаем дату дня рождения в прошлом году
+      var lastYearBirthday = new Date( curDate.getFullYear() - 1, birthday.getMonth(), birthday.getDate());
+      return Math.ceil( (curDate - lastYearBirthday) / (1000 * 60 * 60 * 24) ); // значение в днях
+    }
+  }
   /**
    * Обработчик изменения фильтра. Добавляет класс из filterMap соответствующий
    * выбранному значению в форме.
