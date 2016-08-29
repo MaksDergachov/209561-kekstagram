@@ -30,8 +30,8 @@ createCallback('http://localhost:1506/api/pictures?callback=JSONPCallback', func
   pictures = data;
 
   pictures.forEach(function(pic) {
-    var picture = getPictureElement(pic, picturesContainer);
-    pictures.container.appendChild(picture);
+    var picture = getPictureElement(pic);
+    picturesContainer.appendChild(picture);
   });
 
   filtersBlock.classList.remove('hidden');
