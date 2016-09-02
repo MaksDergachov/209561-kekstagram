@@ -1,7 +1,5 @@
 'use strict';
 
-define([
-  './pictures',
-  './resizer',
-  './upload',
-], function(pictures, resizer, upload) {});
+require('./pictures');
+require('./resizer');
+require('./upload');
