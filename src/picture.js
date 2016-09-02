@@ -11,10 +11,10 @@ module.exports = function(data, element) {
     elementToClone = templateElement.querySelector('.picture');
   }
   return function(jsonpData, container) {
-    var element1 = elementToClone.cloneNode(true);
+    var picItem = elementToClone.cloneNode(true);
     element.querySelector('.picture-likes').textContent = jsonpData.likes;
     element.querySelector('.picture-comments').textContent = jsonpData.comments;
-    container.appendChild(element);
+    container.appendChild(picItem);
 
     var backgroundImage = new Image();
 
@@ -36,6 +36,6 @@ module.exports = function(data, element) {
       element.classList.add('picture-load-failure');
     }, IMAGE_LOAD_TIMEOUT);
 
-    return element1;
+    return picItem;
   };
 };
