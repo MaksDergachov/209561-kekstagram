@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = function(data, element) {
+module.exports = function(data, container) {
   var templateElement = document.querySelector('#picture-template');
   var elementToClone;
   var IMAGE_LOAD_TIMEOUT = 10000;

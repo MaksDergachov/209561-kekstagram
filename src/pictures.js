@@ -11,7 +11,7 @@ load('http://localhost:1506/api/pictures?callback=JSONPCallback', function(data)
   var pictures = data;
   pictures.forEach(function(pic) {
     var picture = getPicture(pic);
-    picturesContainer.appendChild(getPicture(picture));
+    picturesContainer.appendChild(picture);
   });
 
   filtersBlock.classList.remove('hidden');
